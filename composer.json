@@ -1,6 +1,6 @@
 {
   "name":"australian_greens/au.org.greens.genderpronouns",
-  "type":"drupal/module",
+  "type":"drupal-module",
   "description": "Australian Greens Extension adding ability to record gender profiles through profiles",
   "require": {
     "composer/installers": "*",
