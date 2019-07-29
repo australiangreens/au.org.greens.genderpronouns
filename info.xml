@@ -1,22 +1,22 @@
 <?xml version="1.0"?>
 <extension key="au.org.greens.genderpronouns" type="module">
   <file>genderpronouns</file>
-  <name>FIXME</name>
-  <description>FIXME</description>
+  <name>Gender Pronouns Extension</name>
+  <description>Add in ability to record someone's gender pronoun via event or contribution pages and profiles</description>
   <license>AGPL-3.0</license>
   <maintainer>
     <author>Seamus Lee</author>
-    <email>seamuslee001@gmail.com</email>
+    <email>seamus@nsw.greens.org.au</email>
   </maintainer>
   <urls>
-    <url desc="Main Extension Page">http://FIXME</url>
-    <url desc="Documentation">http://FIXME</url>
-    <url desc="Support">http://FIXME</url>
+    <url desc="Main Extension Page">https://github.com/australiangreens/au.org.greens.genderpronouns</url>
+    <url desc="Documentation">https://github.com/australiangreens/au.org.greens.genderpronouns</url>
+    <url desc="Support">https://github.com/australiangreens/au.org.greens.genderpronouns</url>
     <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
   </urls>
-  <releaseDate>2019-07-25</releaseDate>
+  <releaseDate>2019-07-29</releaseDate>
   <version>1.0</version>
-  <develStage>alpha</develStage>
+  <develStage>stable</develStage>
   <compatibility>
     <ver>5.0</ver>
   </compatibility>
