@@ -7,11 +7,11 @@
     "drupal/drupal": "*",
     "australian_greens/civicrm": "*"
   },
-  "author": {
-    [
+  "authors": [
+    {
       "name": "Seamus Lee",
       "email": "seamus@nsw.greens.org.au"
-    ]
-  }
+    }
+  ]
 }
 
