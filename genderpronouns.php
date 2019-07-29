@@ -141,16 +141,34 @@ function genderpronouns_civicrm_themes(&$themes) {
   _genderpronouns_civix_civicrm_themes($themes);
 }
 
-function genderpronouns_civicrm_builForm($formName, $form) {
-  $genderOptions = civicrm_api3('OptionValue', 'get', ['name' => 'gender_pronouns', ['return' => ['label', 'value']]]);
-  if ($form->elementExists('custom_field_id')) {
-    $form->addElement('Select', 'pronoun_options', ts('Gender Pronoun'),
-      [
-        0 => ts('- select -'),
-      ] + $genderOptions,
-      FALSE,
-      ['class' => "crm-select2"]
-    );
+function genderpronouns_civicrm_buildForm($formName, $form) {
+  if ($formName != 'CRM_Contribute_Form_Contribution_Confirm' || $formName == 'CRM_Contribute_Form_Contribution_ThankYou') {
+    $options = [];
+    $genderOptions = civicrm_api3('OptionValue', 'get', ['option_group_id' => 'gender_pronouns', ['return' => ['label', 'value']]]);
+    foreach ($genderOptions['values'] as $option) {
+      $options[$option['value']] = $option['label'];
+    }
+    $options[] = E::ts('Other');
+    $customField = civicrm_api3('CustomField', 'get', ['name' => 'gender_pronoun']);
+    if ($form->elementExists('custom_' . $customField['id'])) {
+      $currentClass = $form->getElement('custom_' . $customField['id'])->getAttribute('class');
+      if (!empty($currentClass)) {
+        $currentClass .= ' ';
+      }
+      $currentClass .= 'gender_pronoun_custom_field_text_box';
+      $form->getElement('custom_' . $customField['id'])->updateAttributes(['class' => $currentClass]);
+      $form->addElement('Select', 'pronoun_options', ts('Gender Pronoun'),
+        [
+          0 => ts('- select -'),
+        ] + $options,
+        FALSE,
+        ['class' => "crm-select2"]
+      );
+      CRM_Core_Region::instance('form-bottom')->add(array(
+        'template' => 'pronoun_options.tpl'
+       ));
+      CRM_Core_Resources::singleton()->addScriptFile('au.org.greens.genderpronouns', 'js/gender_pronoun.js');
+    }
   }
 }
  

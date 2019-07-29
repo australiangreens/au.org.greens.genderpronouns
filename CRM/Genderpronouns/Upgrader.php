@@ -16,7 +16,7 @@ class CRM_Genderpronouns_Upgrader extends CRM_Genderpronouns_Upgrader_Base {
     $customGroupParams = [
       'title' => E::ts('Contact Gender Pronouns'),
       'name' => 'contact_gender_pronouns',
-      'extends' => 'contacts',
+      'extends' => 'Contact',
       'is_active' => 1,
       'is_reserved' => 1,
       'style' => 'Inline',
@@ -25,7 +25,7 @@ class CRM_Genderpronouns_Upgrader extends CRM_Genderpronouns_Upgrader_Base {
     ];
     $customGroup = civicrm_api3('CustomGroup', 'create', $customGroupParams);
     $customFieldParams = [
-      'title' => E::ts('Gender Pronoun'),
+      'label' => E::ts('Gender Pronoun'),
       'name' => 'gender_pronoun',
       'data_type' => 'String',
       'html_type' => 'Text',
@@ -38,7 +38,7 @@ class CRM_Genderpronouns_Upgrader extends CRM_Genderpronouns_Upgrader_Base {
     ];
     $customField = civicrm_api3('CustomField', 'create', $customFieldParams);
     $optionGroup = civicrm_api3('OptionGroup', 'create', [
-      'label' => E::ts('Gender Pronouns'),
+      'title' => E::ts('Gender Pronouns'),
       'name' => 'gender_pronouns',
       'is_resevered' => 1,
       'data_type' => 'Integer',
