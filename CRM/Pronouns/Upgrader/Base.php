@@ -1,12 +1,12 @@
 <?php
 
 // AUTO-GENERATED FILE -- Civix may overwrite any changes made to this file
-use CRM_Genderpronouns_ExtensionUtil as E;
+use CRM_Pronouns_ExtensionUtil as E;
 
 /**
  * Base class which provides helpers to execute upgrade logic
  */
-class CRM_Genderpronouns_Upgrader_Base {
+class CRM_Pronouns_Upgrader_Base {
 
   /**
    * @var varies, subclass of this
@@ -45,8 +45,8 @@ class CRM_Genderpronouns_Upgrader_Base {
   static public function instance() {
     if (!self::$instance) {
       // FIXME auto-generate
-      self::$instance = new CRM_Genderpronouns_Upgrader(
-        'au.org.greens.genderpronouns',
+      self::$instance = new CRM_Pronouns_Upgrader(
+        'au.org.greens.pronouns',
         realpath(__DIR__ . '/../../../')
       );
     }
@@ -60,7 +60,7 @@ class CRM_Genderpronouns_Upgrader_Base {
    * task-context; otherwise, this will be non-reentrant.
    *
    * @code
-   * CRM_Genderpronouns_Upgrader_Base::_queueAdapter($ctx, 'methodName', 'arg1', 'arg2');
+   * CRM_Pronouns_Upgrader_Base::_queueAdapter($ctx, 'methodName', 'arg1', 'arg2');
    * @endcode
    */
   static public function _queueAdapter() {

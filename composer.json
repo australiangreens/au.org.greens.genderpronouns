@@ -1,7 +1,7 @@
 {
-  "name":"australian_greens/au.org.greens.genderpronouns",
+  "name":"australian_greens/au.org.greens.pronouns",
   "type":"drupal-module",
-  "description": "Australian Greens Extension adding ability to record gender profiles through profiles",
+  "description": "Australian Greens Extension adding ability to record their pronoun on their contact record",
   "require": {
     "composer/installers": "*",
     "drupal/drupal": "*",

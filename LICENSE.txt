@@ -1,5 +1,5 @@
-Package: au.org.greens.genderpronouns
-Copyright (C) 2019, Seamus Lee <seamuslee001@gmail.com>
+Package: au.org.greens.pronouns
+Copyright (C) 2019, Seamus Lee <seamus@nsw.greens.org.au>
 Licensed under the GNU Affero Public License 3.0 (below).
 
 -------------------------------------------------------------------------------

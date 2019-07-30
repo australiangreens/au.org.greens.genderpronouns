@@ -6,10 +6,10 @@
  * The ExtensionUtil class provides small stubs for accessing resources of this
  * extension.
  */
-class CRM_Genderpronouns_ExtensionUtil {
-  const SHORT_NAME = "genderpronouns";
-  const LONG_NAME = "au.org.greens.genderpronouns";
-  const CLASS_PREFIX = "CRM_Genderpronouns";
+class CRM_Pronouns_ExtensionUtil {
+  const SHORT_NAME = "pronouns";
+  const LONG_NAME = "au.org.greens.pronouns";
+  const CLASS_PREFIX = "CRM_Pronouns";
 
   /**
    * Translate a string using the extension's domain.
@@ -77,14 +77,14 @@ class CRM_Genderpronouns_ExtensionUtil {
 
 }
 
-use CRM_Genderpronouns_ExtensionUtil as E;
+use CRM_Pronouns_ExtensionUtil as E;
 
 /**
  * (Delegated) Implements hook_civicrm_config().
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_config
  */
-function _genderpronouns_civix_civicrm_config(&$config = NULL) {
+function _pronouns_civix_civicrm_config(&$config = NULL) {
   static $configured = FALSE;
   if ($configured) {
     return;
@@ -114,8 +114,8 @@ function _genderpronouns_civix_civicrm_config(&$config = NULL) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_xmlMenu
  */
-function _genderpronouns_civix_civicrm_xmlMenu(&$files) {
-  foreach (_genderpronouns_civix_glob(__DIR__ . '/xml/Menu/*.xml') as $file) {
+function _pronouns_civix_civicrm_xmlMenu(&$files) {
+  foreach (_pronouns_civix_glob(__DIR__ . '/xml/Menu/*.xml') as $file) {
     $files[] = $file;
   }
 }
@@ -125,9 +125,9 @@ function _genderpronouns_civix_civicrm_xmlMenu(&$files) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_install
  */
-function _genderpronouns_civix_civicrm_install() {
-  _genderpronouns_civix_civicrm_config();
-  if ($upgrader = _genderpronouns_civix_upgrader()) {
+function _pronouns_civix_civicrm_install() {
+  _pronouns_civix_civicrm_config();
+  if ($upgrader = _pronouns_civix_upgrader()) {
     $upgrader->onInstall();
   }
 }
@@ -137,9 +137,9 @@ function _genderpronouns_civix_civicrm_install() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_postInstall
  */
-function _genderpronouns_civix_civicrm_postInstall() {
-  _genderpronouns_civix_civicrm_config();
-  if ($upgrader = _genderpronouns_civix_upgrader()) {
+function _pronouns_civix_civicrm_postInstall() {
+  _pronouns_civix_civicrm_config();
+  if ($upgrader = _pronouns_civix_upgrader()) {
     if (is_callable(array($upgrader, 'onPostInstall'))) {
       $upgrader->onPostInstall();
     }
@@ -151,9 +151,9 @@ function _genderpronouns_civix_civicrm_postInstall() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_uninstall
  */
-function _genderpronouns_civix_civicrm_uninstall() {
-  _genderpronouns_civix_civicrm_config();
-  if ($upgrader = _genderpronouns_civix_upgrader()) {
+function _pronouns_civix_civicrm_uninstall() {
+  _pronouns_civix_civicrm_config();
+  if ($upgrader = _pronouns_civix_upgrader()) {
     $upgrader->onUninstall();
   }
 }
@@ -163,9 +163,9 @@ function _genderpronouns_civix_civicrm_uninstall() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_enable
  */
-function _genderpronouns_civix_civicrm_enable() {
-  _genderpronouns_civix_civicrm_config();
-  if ($upgrader = _genderpronouns_civix_upgrader()) {
+function _pronouns_civix_civicrm_enable() {
+  _pronouns_civix_civicrm_config();
+  if ($upgrader = _pronouns_civix_upgrader()) {
     if (is_callable(array($upgrader, 'onEnable'))) {
       $upgrader->onEnable();
     }
@@ -178,9 +178,9 @@ function _genderpronouns_civix_civicrm_enable() {
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_disable
  * @return mixed
  */
-function _genderpronouns_civix_civicrm_disable() {
-  _genderpronouns_civix_civicrm_config();
-  if ($upgrader = _genderpronouns_civix_upgrader()) {
+function _pronouns_civix_civicrm_disable() {
+  _pronouns_civix_civicrm_config();
+  if ($upgrader = _pronouns_civix_upgrader()) {
     if (is_callable(array($upgrader, 'onDisable'))) {
       $upgrader->onDisable();
     }
@@ -198,21 +198,21 @@ function _genderpronouns_civix_civicrm_disable() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_upgrade
  */
-function _genderpronouns_civix_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
-  if ($upgrader = _genderpronouns_civix_upgrader()) {
+function _pronouns_civix_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
+  if ($upgrader = _pronouns_civix_upgrader()) {
     return $upgrader->onUpgrade($op, $queue);
   }
 }
 
 /**
- * @return CRM_Genderpronouns_Upgrader
+ * @return CRM_Pronouns_Upgrader
  */
-function _genderpronouns_civix_upgrader() {
-  if (!file_exists(__DIR__ . '/CRM/Genderpronouns/Upgrader.php')) {
+function _pronouns_civix_upgrader() {
+  if (!file_exists(__DIR__ . '/CRM/Pronouns/Upgrader.php')) {
     return NULL;
   }
   else {
-    return CRM_Genderpronouns_Upgrader_Base::instance();
+    return CRM_Pronouns_Upgrader_Base::instance();
   }
 }
 
@@ -226,7 +226,7 @@ function _genderpronouns_civix_upgrader() {
  * @param $pattern string, glob pattern, eg "*.txt"
  * @return array(string)
  */
-function _genderpronouns_civix_find_files($dir, $pattern) {
+function _pronouns_civix_find_files($dir, $pattern) {
   if (is_callable(array('CRM_Utils_File', 'findFiles'))) {
     return CRM_Utils_File::findFiles($dir, $pattern);
   }
@@ -235,7 +235,7 @@ function _genderpronouns_civix_find_files($dir, $pattern) {
   $result = array();
   while (!empty($todos)) {
     $subdir = array_shift($todos);
-    foreach (_genderpronouns_civix_glob("$subdir/$pattern") as $match) {
+    foreach (_pronouns_civix_glob("$subdir/$pattern") as $match) {
       if (!is_dir($match)) {
         $result[] = $match;
       }
@@ -261,8 +261,8 @@ function _genderpronouns_civix_find_files($dir, $pattern) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_managed
  */
-function _genderpronouns_civix_civicrm_managed(&$entities) {
-  $mgdFiles = _genderpronouns_civix_find_files(__DIR__, '*.mgd.php');
+function _pronouns_civix_civicrm_managed(&$entities) {
+  $mgdFiles = _pronouns_civix_find_files(__DIR__, '*.mgd.php');
   sort($mgdFiles);
   foreach ($mgdFiles as $file) {
     $es = include $file;
@@ -287,12 +287,12 @@ function _genderpronouns_civix_civicrm_managed(&$entities) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_caseTypes
  */
-function _genderpronouns_civix_civicrm_caseTypes(&$caseTypes) {
+function _pronouns_civix_civicrm_caseTypes(&$caseTypes) {
   if (!is_dir(__DIR__ . '/xml/case')) {
     return;
   }
 
-  foreach (_genderpronouns_civix_glob(__DIR__ . '/xml/case/*.xml') as $file) {
+  foreach (_pronouns_civix_glob(__DIR__ . '/xml/case/*.xml') as $file) {
     $name = preg_replace('/\.xml$/', '', basename($file));
     if ($name != CRM_Case_XMLProcessor::mungeCaseType($name)) {
       $errorMessage = sprintf("Case-type file name is malformed (%s vs %s)", $name, CRM_Case_XMLProcessor::mungeCaseType($name));
@@ -316,12 +316,12 @@ function _genderpronouns_civix_civicrm_caseTypes(&$caseTypes) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_angularModules
  */
-function _genderpronouns_civix_civicrm_angularModules(&$angularModules) {
+function _pronouns_civix_civicrm_angularModules(&$angularModules) {
   if (!is_dir(__DIR__ . '/ang')) {
     return;
   }
 
-  $files = _genderpronouns_civix_glob(__DIR__ . '/ang/*.ang.php');
+  $files = _pronouns_civix_glob(__DIR__ . '/ang/*.ang.php');
   foreach ($files as $file) {
     $name = preg_replace(':\.ang\.php$:', '', basename($file));
     $module = include $file;
@@ -337,8 +337,8 @@ function _genderpronouns_civix_civicrm_angularModules(&$angularModules) {
  *
  * Find any and return any files matching "*.theme.php"
  */
-function _genderpronouns_civix_civicrm_themes(&$themes) {
-  $files = _genderpronouns_civix_glob(__DIR__ . '/*.theme.php');
+function _pronouns_civix_civicrm_themes(&$themes) {
+  $files = _pronouns_civix_glob(__DIR__ . '/*.theme.php');
   foreach ($files as $file) {
     $themeMeta = include $file;
     if (empty($themeMeta['name'])) {
@@ -363,7 +363,7 @@ function _genderpronouns_civix_civicrm_themes(&$themes) {
  * @param string $pattern
  * @return array, possibly empty
  */
-function _genderpronouns_civix_glob($pattern) {
+function _pronouns_civix_glob($pattern) {
   $result = glob($pattern);
   return is_array($result) ? $result : array();
 }
@@ -377,7 +377,7 @@ function _genderpronouns_civix_glob($pattern) {
  * @param array $item - the item to insert (parent/child attributes will be
  *    filled for you)
  */
-function _genderpronouns_civix_insert_navigation_menu(&$menu, $path, $item) {
+function _pronouns_civix_insert_navigation_menu(&$menu, $path, $item) {
   // If we are done going down the path, insert menu
   if (empty($path)) {
     $menu[] = array(
@@ -398,7 +398,7 @@ function _genderpronouns_civix_insert_navigation_menu(&$menu, $path, $item) {
         if (!isset($entry['child'])) {
           $entry['child'] = array();
         }
-        $found = _genderpronouns_civix_insert_navigation_menu($entry['child'], implode('/', $path), $item, $key);
+        $found = _pronouns_civix_insert_navigation_menu($entry['child'], implode('/', $path), $item, $key);
       }
     }
     return $found;
@@ -408,9 +408,9 @@ function _genderpronouns_civix_insert_navigation_menu(&$menu, $path, $item) {
 /**
  * (Delegated) Implements hook_civicrm_navigationMenu().
  */
-function _genderpronouns_civix_navigationMenu(&$nodes) {
+function _pronouns_civix_navigationMenu(&$nodes) {
   if (!is_callable(array('CRM_Core_BAO_Navigation', 'fixNavigationMenu'))) {
-    _genderpronouns_civix_fixNavigationMenu($nodes);
+    _pronouns_civix_fixNavigationMenu($nodes);
   }
 }
 
@@ -418,17 +418,17 @@ function _genderpronouns_civix_navigationMenu(&$nodes) {
  * Given a navigation menu, generate navIDs for any items which are
  * missing them.
  */
-function _genderpronouns_civix_fixNavigationMenu(&$nodes) {
+function _pronouns_civix_fixNavigationMenu(&$nodes) {
   $maxNavID = 1;
   array_walk_recursive($nodes, function($item, $key) use (&$maxNavID) {
     if ($key === 'navID') {
       $maxNavID = max($maxNavID, $item);
     }
   });
-  _genderpronouns_civix_fixNavigationMenuItems($nodes, $maxNavID, NULL);
+  _pronouns_civix_fixNavigationMenuItems($nodes, $maxNavID, NULL);
 }
 
-function _genderpronouns_civix_fixNavigationMenuItems(&$nodes, &$maxNavID, $parentID) {
+function _pronouns_civix_fixNavigationMenuItems(&$nodes, &$maxNavID, $parentID) {
   $origKeys = array_keys($nodes);
   foreach ($origKeys as $origKey) {
     if (!isset($nodes[$origKey]['attributes']['parentID']) && $parentID !== NULL) {
@@ -443,7 +443,7 @@ function _genderpronouns_civix_fixNavigationMenuItems(&$nodes, &$maxNavID, $pare
       $origKey = $newKey;
     }
     if (isset($nodes[$origKey]['child']) && is_array($nodes[$origKey]['child'])) {
-      _genderpronouns_civix_fixNavigationMenuItems($nodes[$origKey]['child'], $maxNavID, $nodes[$origKey]['attributes']['navID']);
+      _pronouns_civix_fixNavigationMenuItems($nodes[$origKey]['child'], $maxNavID, $nodes[$origKey]['attributes']['navID']);
     }
   }
 }
@@ -453,7 +453,7 @@ function _genderpronouns_civix_fixNavigationMenuItems(&$nodes, &$maxNavID, $pare
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_alterSettingsFolders
  */
-function _genderpronouns_civix_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
+function _pronouns_civix_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
   $settingsDir = __DIR__ . DIRECTORY_SEPARATOR . 'settings';
   if (!in_array($settingsDir, $metaDataFolders) && is_dir($settingsDir)) {
     $metaDataFolders[] = $settingsDir;
@@ -468,7 +468,7 @@ function _genderpronouns_civix_civicrm_alterSettingsFolders(&$metaDataFolders = 
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_entityTypes
  */
 
-function _genderpronouns_civix_civicrm_entityTypes(&$entityTypes) {
+function _pronouns_civix_civicrm_entityTypes(&$entityTypes) {
   $entityTypes = array_merge($entityTypes, array (
   ));
 }
