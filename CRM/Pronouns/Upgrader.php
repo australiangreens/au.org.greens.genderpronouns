@@ -48,7 +48,7 @@ class CRM_Pronouns_Upgrader extends CRM_Pronouns_Upgrader_Base {
     $standardOptions = [
       1 => 'He/Him',
       2 => 'She/Her',
-      3 => 'Their/They',
+      3 => 'They/Them',
     ];
     foreach ($standardOptions as $value => $label) {
       civicrm_api3('OptionValue', 'create', [
