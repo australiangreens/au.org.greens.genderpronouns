@@ -48,7 +48,7 @@ class CRM_Pronouns_Upgrader extends CRM_Pronouns_Upgrader_Base {
     $standardOptions = [
       1 => 'He/Him',
       2 => 'She/Her',
-      3 => 'Their/They',
+      3 => 'They/Them',
     ];
     foreach ($standardOptions as $value => $label) {
       civicrm_api3('OptionValue', 'create', [
@@ -112,19 +112,35 @@ class CRM_Pronouns_Upgrader extends CRM_Pronouns_Upgrader_Base {
     return TRUE;
   } // */
 
-
   /**
    * Example: Run an external SQL script.
    *
    * @return TRUE on success
    * @throws Exception
-  public function upgrade_4201() {
-    $this->ctx->log->info('Applying update 4201');
-    // this path is relative to the extension base dir
-    $this->executeSqlFile('sql/upgrade_4201.sql');
+   */
+  public function upgrade_4200() {
+    $this->ctx->log->info('Applying update 4200 Fix tense on they/them option');
+    $currentOptionValue = civicrm_api3('OptionValue', 'get', [
+      'option_group_id' => 'pronouns',
+      'value' => 3,
+    ]);
+    $newLabel = E::ts('They/Them');
+    civicrm_api3('OptionValue', 'create', [
+      'id' => $currentOptionValue['id'],
+      'name' => 'They/Them',
+      'label' => $newLabel,
+    ]);
+    $locales = CRM_Core_DAO::singleValueQuery("SELECT locales FROM civicrm_domain WHERE id = %1", [1 => [CRM_Core_Config::domainID(), 'Positive']]);
+    // Only perform changes to custom value table if we are on a single lingual.
+    if (!$locales) {
+      $customGroup = civicrm_api3('CustomGroup', 'get', ['name' => 'contact_pronouns']);
+      $customGroupTable = $customGroup['values'][$customGroup['id']]['table_name'];
+      $customField = civicrm_api3('CustomField', 'get', ['name' => 'pronoun', 'custom_group_id' => $customGroup['id']]);
+      $customFIeldColumn = $customField['values'][$customField['id']]['column_name'];
+      CRM_Core_DAO::executeQuery("UPDATE {$customGroupTable} SET {$customFIeldColumn} = '{$newLabel}' WHERE {$customFIeldColumn} = '{$currentOptionValue['values'][$currentOptionValue['id']]['label']}'");
+    }
     return TRUE;
-  } // */
-
+  }
 
   /**
    * Example: Run a slow upgrade process by breaking it up into smaller chunk.
